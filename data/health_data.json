@@ -1,0 +1,16 @@
+{
+ "dengue": {
+  "symptoms": ["high fever", "headache", "joint pain", "vomiting"],
+  "prevention": ["avoid mosquito bites", "use mosquito nets", "remove stagnant water"]
+ },
+
+ "malaria": {
+  "symptoms": ["fever", "chills", "sweating"],
+  "prevention": ["use mosquito nets", "keep surroundings clean"]
+ },
+
+ "covid": {
+  "symptoms": ["fever", "cough", "breathing difficulty"],
+  "prevention": ["wear mask", "wash hands", "vaccination"]
+ }
+}
