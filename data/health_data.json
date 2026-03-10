@@ -1,16 +1,126 @@
 {
- "dengue": {
-  "symptoms": ["high fever", "headache", "joint pain", "vomiting"],
-  "prevention": ["avoid mosquito bites", "use mosquito nets", "remove stagnant water"]
- },
-
- "malaria": {
-  "symptoms": ["fever", "chills", "sweating"],
-  "prevention": ["use mosquito nets", "keep surroundings clean"]
- },
-
- "covid": {
-  "symptoms": ["fever", "cough", "breathing difficulty"],
-  "prevention": ["wear mask", "wash hands", "vaccination"]
- }
+  "diseases": {
+    "malaria": {
+      "symptoms": ["fever", "chills", "headache", "sweating", "nausea", "vomiting", "muscle pain", "fatigue"],
+      "prevention": ["Use mosquito nets while sleeping", "Apply insect repellent", "Wear long-sleeved clothing", "Eliminate standing water near home", "Take antimalarial medication if travelling"],
+      "treatment": "Visit a doctor immediately for blood test. Antimalarial drugs like Chloroquine or Artemisinin-based therapy are prescribed.",
+      "emergency": true,
+      "season": "Monsoon and post-monsoon (July-November)"
+    },
+    "dengue": {
+      "symptoms": ["high fever", "severe headache", "pain behind eyes", "joint pain", "muscle pain", "rash", "mild bleeding"],
+      "prevention": ["Remove stagnant water", "Use mosquito repellents", "Wear protective clothing", "Use mosquito nets", "Keep water containers covered"],
+      "treatment": "No specific antiviral medicine. Rest, fluids, and paracetamol for fever. Avoid aspirin. Hospitalization if severe.",
+      "emergency": true,
+      "season": "Rainy season (June-October)"
+    },
+    "typhoid": {
+      "symptoms": ["prolonged fever", "weakness", "abdominal pain", "headache", "loss of appetite", "diarrhea or constipation", "rose-colored spots on skin"],
+      "prevention": ["Drink safe/boiled water", "Eat properly cooked food", "Wash hands frequently", "Get typhoid vaccine", "Avoid raw fruits/vegetables from unsafe sources"],
+      "treatment": "Antibiotics prescribed by doctor. Stay hydrated. Rest and proper nutrition.",
+      "emergency": false,
+      "season": "All year, more in summer"
+    },
+    "cholera": {
+      "symptoms": ["watery diarrhea", "vomiting", "rapid dehydration", "muscle cramps", "dry mouth", "sunken eyes"],
+      "prevention": ["Drink safe water only", "Wash hands with soap", "Eat thoroughly cooked food", "Use proper sanitation", "Get cholera vaccine in outbreak areas"],
+      "treatment": "Oral Rehydration Solution (ORS) immediately. Antibiotics in severe cases. Hospitalization for IV fluids if severe.",
+      "emergency": true,
+      "season": "Monsoon season"
+    },
+    "tuberculosis": {
+      "symptoms": ["persistent cough 3+ weeks", "blood in cough", "chest pain", "unintended weight loss", "night sweats", "fever", "fatigue"],
+      "prevention": ["BCG vaccine for children", "Avoid close contact with TB patients", "Ensure good ventilation", "Complete TB treatment course", "Regular screening"],
+      "treatment": "6-month antibiotic course (DOTS therapy). Free treatment available at government hospitals.",
+      "emergency": false,
+      "season": "All year"
+    },
+    "covid19": {
+      "symptoms": ["fever", "dry cough", "tiredness", "loss of taste or smell", "shortness of breath", "sore throat", "headache", "body aches"],
+      "prevention": ["Get vaccinated", "Wear masks in crowded places", "Wash hands regularly", "Maintain distance", "Ventilate indoor spaces"],
+      "treatment": "Supportive care. Consult doctor. Isolate if positive. Oxygen therapy if needed. Antivirals for high-risk patients.",
+      "emergency": true,
+      "season": "All year"
+    },
+    "diarrhea": {
+      "symptoms": ["loose watery stools", "stomach cramps", "nausea", "fever", "blood in stool", "dehydration"],
+      "prevention": ["Drink safe water", "Wash hands before eating", "Eat freshly cooked food", "Avoid street food", "Proper waste disposal"],
+      "treatment": "ORS (Oral Rehydration Solution) - mix 1L water + 6 tsp sugar + 0.5 tsp salt. Zinc supplements for children. See doctor if blood in stool.",
+      "emergency": false,
+      "season": "Monsoon season"
+    },
+    "pneumonia": {
+      "symptoms": ["cough with phlegm", "fever", "chills", "difficulty breathing", "chest pain", "fatigue", "nausea"],
+      "prevention": ["Pneumococcal vaccine", "Flu vaccine", "Quit smoking", "Good hygiene", "Boost immunity with nutrition"],
+      "treatment": "Antibiotics (bacterial), antivirals (viral). Rest, fluids. Hospitalization for severe cases.",
+      "emergency": true,
+      "season": "Winter months"
+    }
+  },
+  "vaccines": {
+    "children": [
+      {"name": "BCG", "age": "At birth", "disease": "Tuberculosis", "doses": 1},
+      {"name": "OPV", "age": "At birth, 6, 10, 14 weeks", "disease": "Polio", "doses": 4},
+      {"name": "Hepatitis B", "age": "At birth, 6, 10, 14 weeks", "disease": "Hepatitis B", "doses": 3},
+      {"name": "DPT", "age": "6, 10, 14 weeks + booster at 18 months", "disease": "Diphtheria, Pertussis, Tetanus", "doses": 4},
+      {"name": "Hib", "age": "6, 10, 14 weeks", "disease": "Meningitis", "doses": 3},
+      {"name": "PCV", "age": "6, 14 weeks, 9 months", "disease": "Pneumonia", "doses": 3},
+      {"name": "Rotavirus", "age": "6, 10, 14 weeks", "disease": "Rotavirus Diarrhea", "doses": 3},
+      {"name": "IPV", "age": "14 weeks, 6 months", "disease": "Polio (injectable)", "doses": 2},
+      {"name": "Measles/MMR", "age": "9-12 months, 15-18 months", "disease": "Measles, Mumps, Rubella", "doses": 2},
+      {"name": "JE", "age": "9-12 months (endemic areas)", "disease": "Japanese Encephalitis", "doses": 1},
+      {"name": "Typhoid", "age": "9-12 months", "disease": "Typhoid", "doses": 1},
+      {"name": "Varicella", "age": "15 months", "disease": "Chickenpox", "doses": 1}
+    ],
+    "adults": [
+      {"name": "Influenza", "age": "Annually for all adults", "disease": "Flu", "doses": "Annual"},
+      {"name": "Td/Tdap", "age": "Every 10 years", "disease": "Tetanus, Diphtheria", "doses": "Booster"},
+      {"name": "Hepatitis B", "age": "If not vaccinated as child", "disease": "Hepatitis B", "doses": 3},
+      {"name": "COVID-19", "age": "All adults + boosters", "disease": "COVID-19", "doses": "2+boosters"},
+      {"name": "Pneumococcal", "age": "65+ or high-risk adults", "disease": "Pneumonia", "doses": "1-2"}
+    ],
+    "pregnant_women": [
+      {"name": "Td", "age": "27-36 weeks pregnancy", "disease": "Tetanus, Diphtheria for baby", "doses": 1},
+      {"name": "Influenza", "age": "Any trimester", "disease": "Flu protection", "doses": 1},
+      {"name": "Hepatitis B", "age": "If not immune", "disease": "Hepatitis B", "doses": 3}
+    ]
+  },
+  "outbreaks": [
+    {
+      "disease": "Dengue",
+      "location": "Delhi, Mumbai, Bengaluru",
+      "status": "Active",
+      "severity": "Moderate",
+      "date": "2025-09",
+      "advisory": "Avoid stagnant water. Use mosquito repellents. Seek medical attention for high fever."
+    },
+    {
+      "disease": "Cholera",
+      "location": "Parts of Bihar, Odisha",
+      "status": "Watch",
+      "severity": "Low",
+      "date": "2025-08",
+      "advisory": "Drink only boiled or treated water. Maintain hand hygiene."
+    }
+  ],
+  "emergency_numbers": {
+    "national_health_helpline": "104",
+    "ambulance": "108",
+    "womens_helpline": "1091",
+    "child_helpline": "1098",
+    "covid_helpline": "1075",
+    "disaster_management": "1070"
+  },
+  "first_aid": {
+    "fever": "Take paracetamol. Apply cool wet cloth on forehead. Stay hydrated. If fever >103°F or lasts >3 days, see doctor immediately.",
+    "dehydration": "Drink ORS solution. Small sips frequently. Coconut water helps. Seek medical care if unconscious or unable to drink.",
+    "snake_bite": "Keep calm, immobilize affected limb. Do NOT suck venom or make cuts. Rush to hospital immediately.",
+    "burns": "Cool with running water for 20 min. Do not apply ice, butter, or toothpaste. Cover loosely. Seek medical help for large burns.",
+    "bleeding": "Apply direct pressure with clean cloth. Elevate the injured area. Do not remove cloth if soaked - add more on top. Seek help."
+  },
+  "nutrition_tips": {
+    "general": ["Eat 5 portions of fruits/vegetables daily", "Drink 8 glasses of water", "Reduce salt and sugar intake", "Choose whole grains over refined", "Limit processed foods"],
+    "children": ["Breastfeed infants for 6 months exclusively", "Introduce soft foods at 6 months", "Ensure iron-rich foods", "Vitamin A supplementation every 6 months"],
+    "pregnant": ["Folic acid supplements", "Iron and calcium rich foods", "Avoid raw/undercooked meat", "Regular prenatal checkups"]
+  }
 }
