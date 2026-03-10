@@ -1,51 +1,108 @@
 import json
-import google.generativeai as genai
 
-# Gemini API Key
-genai.configure(api_key="YOUR_GEMINI_API_KEY")
-
-# Load health data
+# Load dataset
 with open("data/health_data.json") as f:
-    health_data = json.load(f)
+    data = json.load(f)
+
+diseases = data["diseases"]
+first_aid = data["first_aid"]
+nutrition = data["nutrition_tips"]
+emergency = data["emergency_numbers"]
 
 
-# Translation function
-def translate_text(text, target_language):
+def get_response(message):
 
-    model = genai.GenerativeModel("gemini-pro")
+    msg = message.lower()
 
-    prompt = f"Translate this text to {target_language}: {text}"
-
-    response = model.generate_content(prompt)
-
-    return response.text
-
-
-# Chatbot response function
-def get_response(user_message):
-
-    msg = user_message.lower()
-
-    for disease in health_data:
-
+    # ---------------- DISEASE RESPONSE ----------------
+    for disease in diseases:
         if disease in msg:
 
-            symptoms = ", ".join(health_data[disease]["symptoms"])
-            prevention = ", ".join(health_data[disease]["prevention"])
+            info = diseases[disease]
 
-            response = f"""
-Disease: {disease}
+            symptoms = ", ".join(info["symptoms"])
+            prevention = ", ".join(info["prevention"])
+            treatment = info["treatment"]
+
+            return f"""
+Disease: {disease.upper()}
 
 Symptoms:
 {symptoms}
 
 Prevention:
 {prevention}
+
+Treatment:
+{treatment}
 """
 
-            # Translate response
-            translated = translate_text(response, "Telugu")
+    # ---------------- EMERGENCY NUMBERS ----------------
+    if "emergency" in msg or "helpline" in msg or "help number" in msg:
 
-            return translated
+        return f"""
+Emergency Numbers:
 
-    return "Sorry, I don't have information about that disease."
+National Health Helpline: {emergency['national_health_helpline']}
+Ambulance: {emergency['ambulance']}
+Women's Helpline: {emergency['womens_helpline']}
+Child Helpline: {emergency['child_helpline']}
+COVID Helpline: {emergency['covid_helpline']}
+Disaster Management: {emergency['disaster_management']}
+"""
+
+    # ---------------- FIRST AID ----------------
+    for aid in first_aid:
+        if aid in msg:
+
+            return f"""
+First Aid for {aid.upper()}:
+
+{first_aid[aid]}
+"""
+
+    # ---------------- NUTRITION TIPS ----------------
+
+    if "nutrition" in msg or "diet" in msg or "food tips" in msg:
+
+        if "children" in msg or "kids" in msg:
+
+            children = "\n".join(nutrition["children"])
+
+            return f"""
+Nutrition Tips for Children:
+
+{children}
+"""
+
+    elif "pregnant" in msg or "pregnancy" in msg:
+
+        pregnant = "\n".join(nutrition["pregnant"])
+
+        return f"""
+Nutrition Tips for Pregnant Women:
+
+{pregnant}
+"""
+
+    elif "general" in msg or "adult" in msg:
+
+        general = "\n".join(nutrition["general"])
+
+        return f"""
+General Nutrition Tips:
+
+{general}
+"""
+
+    else:
+
+        return """
+Please specify the category:
+
+• nutrition tips for children  
+• nutrition tips for pregnant women  
+• general nutrition tips
+"""
+
+    return "Ask about diseases (dengue, malaria), first aid (burns, fever), nutrition tips, or emergency numbers."
