@@ -1,0 +1,45 @@
+function sendMessage(){
+
+let msg = document.getElementById("message").value
+
+let chatBox = document.getElementById("chat-box")
+
+chatBox.innerHTML += "<div class='user'>"+msg+"</div>"
+
+fetch("/chat",{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({message:msg})
+})
+.then(res=>res.json())
+.then(data=>{
+
+chatBox.innerHTML += "<div class='bot'>"+data.reply+"</div>"
+
+})
+
+document.getElementById("message").value=""
+
+}
+function selectCategory(category){
+
+    let chatbox = document.getElementById("chatbox")
+
+    if(category === "disease"){
+        chatbox.innerHTML += "<p><b>Bot:</b> Ask about diseases like dengue, malaria, typhoid.</p>"
+    }
+
+    if(category === "emergency"){
+        chatbox.innerHTML += "<p><b>Bot:</b> Type 'emergency numbers' to get health helplines.</p>"
+    }
+
+    if(category === "first aid"){
+        chatbox.innerHTML += "<p><b>Bot:</b> Ask first aid questions like burns, bleeding, snake bite.</p>"
+    }
+
+    if(category === "nutrition"){
+        chatbox.innerHTML += "<p><b>Bot:</b> Ask nutrition tips for children, pregnant women, or general.</p>"
+    }
+}
